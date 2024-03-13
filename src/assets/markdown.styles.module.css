@@ -1,0 +1,15 @@
+.reactMarkDown {
+    background-color: rgb(245,250,252);
+}
+
+.reactMarkDown ul {
+    list-style: disc outside none;
+}
+
+.reactMarkDown ul li {
+    text-align: -webkit-match-parent;
+}
+
+.reactMarkDown ol {
+    list-style-type: decimal;
+}
