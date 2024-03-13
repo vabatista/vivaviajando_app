@@ -8,8 +8,8 @@ import Post from '../types/post-type';
 import { PostCardSkeleton } from '../components/skeletons/post-card-skeleton';
 import ThemeToggle from '../components/theme-toggle-button';
 import AddIcon from '../assets/svg/add-icon-white.svg';
-import { Link } from 'react-router-dom';
 import '../assets/custom.styles.css';
+import Footer from '../components/footer';
 import logo from '../assets/logo_viva_viajando_transparente.jpeg'
 import React from 'react';
 
@@ -78,14 +78,7 @@ function HomePage() {
             : posts.map((post) => <PostCard key={post._id} post={post} />)}
         </div>
       </div>
-      <div style={{ textAlign: 'center' }} className="mx-4 md:mx-8 lg:mx-16">
-        <Link to="/about-us" className='custom-link'>Sobre nós</Link>  
-        <span style={{ margin: '0 10px' }}>•</span>
-        <Link to="mailto:vivaviajandorj@gmail.com" target="_blank" className='custom-link'>Fale conosco</Link>
-        <br />
-        <br />
-      </div>
-
+      <Footer/>
     </div>
   );
 }

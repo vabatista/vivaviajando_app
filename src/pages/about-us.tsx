@@ -60,7 +60,10 @@ export default function AboutUs() {
         <br/>
         <h1 className="text-xl sm:pb-0 pb-4 font-semibold dark:text-dark-primary">Sobre nós</h1>
         <div className="flex flex-wrap">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat, laudantium sapiente cumque, architecto maiores magni molestiae libero ad non quo, perspiciatis molestias quasi quae natus impedit iure sunt fugiat ex!
+          Não somos uma empresa. É importante começar por aí. Não temos a intenção de fazer dinheiro com esse blogue, mas apenas passar o tempo e relembrar um pouco das nossas viagens.
+          Somos um casal, Vitor e Gabriela. Vitor é nascido mineiro, habitante do Rio de Janeiro e com Greencard baiano, por ser casado com uma baiana residente no Rio de Janeiro. Esse blogue é desenvolvido e mantido por nós, portanto, não espere algo profissional. Por outro lado, aqui não fazemos recomendações ou damos dicas com conflito de interesses, já que não temos qualquer tipo de patrocínio nas nossas viagens. 
+          Para entender o que vai encontrar aqui, é importante saber do que gostamos, para entender se está alinhado com sua expectativa. Gostamos muito de viajar, cozinhar, comer, sambar e caminhar pelas ruas. Como a saudosa Rita Lee, não gostamos nem de luxo nem de lixo. Procuramos fazer escolhas médias em termos de conforto e preço. A gente é bem fã de transporte público (não temos carro). Raras vezes usamos Taxi ou Uber em cidades com boa estrutura de transporte público. Também gostamos muito de caminhar: é normal para nós andar até 20km em um dia de viagem. Por isso também procuramos nos organizar para nos hospedar próximo aos pontos que desejamos visitar ou ao transporte público.
+          Então é isso. Espero que nossos relatos te ajudem em alguma coisa na sua próxima viagem. O importante pra nós é que nos divertimos desenvolvendo esse blog e acabamos relembrando as viagens e experiências antigas!
         </div>
       </div>
     </div>
