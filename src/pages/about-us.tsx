@@ -64,9 +64,10 @@ export default function AboutUs() {
           <br/><br/>
           Somos um casal, Vitor e Gabriela. Vitor é nascido mineiro, habitante do Rio de Janeiro e com Greencard baiano, por ser casado com uma baiana residente no Rio de Janeiro. Esse blogue é desenvolvido e mantido por nós, portanto, não espere algo profissional. Por outro lado, aqui não fazemos recomendações ou damos dicas com conflito de interesses, já que não temos qualquer tipo de patrocínio nas nossas viagens. 
           <br/><br/>
-          Para entender o que vai encontrar aqui, é importante saber do que gostamos, para entender se está alinhado com sua expectativa. Gostamos muito de viajar, cozinhar, comer, sambar e caminhar pelas ruas. Como a saudosa Rita Lee, não gostamos nem de luxo nem de lixo. Procuramos fazer escolhas médias em termos de conforto e preço. A gente é bem fã de transporte público (não temos carro). Raras vezes usamos Taxi ou Uber em cidades com boa estrutura de transporte público. Também gostamos muito de caminhar: é normal para nós andar até 20km em um dia de viagem. Por isso também procuramos nos organizar para nos hospedar próximo aos pontos que desejamos visitar ou ao transporte público.
+          Para entender o que vai encontrar aqui, é importante saber do que gostamos, para entender se está alinhado com sua expectativa. Gostamos muito de viajar, cozinhar, comer, sambar e caminhar pelas ruas. Como a saudosa Rita Lee, não gostamos nem de luxo nem de lixo. Procuramos fazer escolhas médias em termos de conforto e preço. A gente é bem fã de transporte público (não temos carro). Raras vezes usamos Taxi ou Uber em cidades com boa estrutura de transporte público. Também gostamos muito de caminhar: é normal andarmos até 20km em um dia de viagem. Por isso também procuramos nos organizar para nos hospedar próximo aos pontos que desejamos visitar ou ao transporte público.
           <br/><br/>
-          Então é isso. Espero que nossos relatos te ajudem em alguma coisa na sua próxima viagem. O importante pra nós é que nos divertimos desenvolvendo esse blog e acabamos relembrando as viagens e experiências antigas!
+          Então é isso. Espero que nossos relatos te ajudem em alguma coisa na sua próxima viagem. O importante pra nós é que nos divertimos desenvolvendo esse blogue e acabamos relembrando as viagens e experiências antigas!
+          <br/><br/>
         </div>
       </div>
     </div>
