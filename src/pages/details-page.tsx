@@ -17,6 +17,7 @@ export default function DetailsPage() {
   const { postId } = useParams();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const getPostById = async () => {
       try {
@@ -33,6 +34,14 @@ export default function DetailsPage() {
       getPostById();
     }
   }, [post]);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme') ?? 'light';
+    const textContainer = document.getElementById('textcontainer');
+    if (textContainer) {
+      textContainer.setAttribute('data-color-mode', storedTheme);
+    }
+  }, [])
 
   if (!loading)
     return (
@@ -58,10 +67,10 @@ export default function DetailsPage() {
             </p>
           </div>
         </div>
-        <div className="items-center gap-y-4 px-4 py-10">
-          <div>
-            <MDEditor.Markdown source={post.description} className={style.reactMarkDown} style={{ whiteSpace: 'pre-wrap' }} />
-          </div>
+        <div className="items-center gap-y-4 px-4 py-10" >
+            <div id="textcontainer" className="wmde-markdown-var">
+              <MDEditor.Markdown source={post.description} className="  bg-light dark:bg-dark" style={{ whiteSpace: 'pre-wrap' }} />
+            </div>
         </div>
       </div>
     );
