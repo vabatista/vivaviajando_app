@@ -9,6 +9,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  REACT_APP_API_PATH: ${{secrets.REACT_APP_API_PATH}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
