@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.95dd9a2c.css",
+    "main.js": "/static/js/main.1584e334.js",
+    "static/js/453.c2dffe0a.chunk.js": "/static/js/453.c2dffe0a.chunk.js",
+    "static/media/wanderlustbg.webp": "/static/media/wanderlustbg.af553ef12bfd73e37bd1.webp",
+    "static/media/logo_viva_viajando_transparente.jpeg": "/static/media/logo_viva_viajando_transparente.20f838f01a8a0ac80e70.jpeg",
+    "static/media/add-icon-white.svg": "/static/media/add-icon-white.5415a3cd102eae54b4aab674ebcfa57e.svg",
+    "static/media/sun.svg": "/static/media/sun.d824fb89801578530fc01da45887b0e3.svg",
+    "static/media/link.svg": "/static/media/link.d1b5933cefc9a1b5f8fd93f879cf7bdd.svg",
+    "static/media/moon.svg": "/static/media/moon.3bc80cf1e1fbb0d637fccf960715ba9b.svg",
+    "static/media/navigate-back-black.svg": "/static/media/navigate-back-black.8619f79d3f6a0af3211f77d287b09744.svg",
+    "static/media/navigate-back-white.svg": "/static/media/navigate-back-white.5551529776e1ad40d20f23bf639506c5.svg",
+    "index.html": "/index.html",
+    "main.95dd9a2c.css.map": "/static/css/main.95dd9a2c.css.map",
+    "main.1584e334.js.map": "/static/js/main.1584e334.js.map",
+    "453.c2dffe0a.chunk.js.map": "/static/js/453.c2dffe0a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.95dd9a2c.css",
+    "static/js/main.1584e334.js"
+  ]
+}
