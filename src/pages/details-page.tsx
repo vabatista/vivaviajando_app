@@ -7,7 +7,7 @@ import axios from 'axios';
 import MDEditor from '@uiw/react-md-editor';
 import Footer from '../components/footer';
 import ThemeToggle from '../components/theme-toggle-button';
-import '../assets/markdown.styles.module.css'
+import mdstyles from '../assets/markdown.styles.module.css'
 
 
 
@@ -75,7 +75,7 @@ export default function DetailsPage() {
         </div>
         <div className="items-center gap-y-4 px-4 py-10" >
             <div id="textcontainer" className="wmde-markdown-var">
-              <MDEditor.Markdown source={post.description} className="reactMarkDown bg-light dark:bg-dark" />
+              <MDEditor.Markdown source={post.description} className={mdstyles.reactMarkDown + " bg-light dark:bg-dark"}  />
             </div>
         </div>
         <Footer/>

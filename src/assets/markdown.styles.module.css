@@ -1,17 +1,23 @@
 .reactMarkDown p { 
     margin: 0px; 
-    margin-top: 0px;
+    margin-top: 12px;
     margin-bottom: 0px;
 }
 
 .reactMarkDown ul {
-    list-style: disc outside none;
-}
+    list-style: disc outside;
+}   
+
 
 .reactMarkDown ul li {
     text-align: -webkit-match-parent;
-}
+} 
 
 .reactMarkDown ol {
     list-style-type: decimal;
+}
+
+.reactMarkDown img {
+    padding:5px;
+    float: none;
 }
