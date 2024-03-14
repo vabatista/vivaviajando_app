@@ -21,6 +21,7 @@ export default function DetailsPage() {
   const { postId } = useParams();
   const navigate = useNavigate();
 
+  ReactGA.send({ hitType: "pageview", page: postId, title: post.title });
 
   useEffect(() => {
     const getPostById = async () => {
@@ -28,7 +29,6 @@ export default function DetailsPage() {
         await axios.get(process.env.REACT_APP_API_PATH + `/api/posts/${postId}`).then((response) => {
           setIsLoading(false);
           setPost(response.data);
-          ReactGA.send({ hitType: "pageview", page: postId, title: response.data.title });
 
         });
       } catch (error) {
