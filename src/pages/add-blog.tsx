@@ -11,6 +11,14 @@ import { categories } from '../utils/category-colors';
 import MDEditor from '@uiw/react-md-editor';
 import style from '../assets/markdown.styles.module.css';
 import React from 'react';
+import { jwtDecode } from 'jwt-decode';
+
+
+
+const authUsers = [
+  'vabatista@gmail.com',
+  'gabi.estrella@yahoo.com'
+]
 
 type FormData = {
   title: string;
@@ -22,7 +30,19 @@ type FormData = {
 };
 function AddBlog() {
   const [selectedImage, setSelectedImage] = useState<string>('');
+  const [loggedUser, setLoggedUser] = useState('');
 
+  useEffect(() => {
+    const gtoken = localStorage.getItem('g-token');
+    if (gtoken !== null) {
+      const decoded: { email: string } = jwtDecode(gtoken as string);
+      if (authUsers.includes(decoded.email)) {
+        setLoggedUser(decoded.email);
+      }
+    }
+  }, []);
+  
+  
   const handleImageSelect = (imageUrl: string) => {
     setSelectedImage(imageUrl);
   };
@@ -129,7 +149,7 @@ function AddBlog() {
     return <span className="dark:text-dark-tertiary">*</span>;
   }
 
-  return (
+  return (loggedUser !== '' ? (
     <div className="min-h-screen cursor-default bg-slate-50 px-6 py-8 dark:bg-dark">
       <div className="mb-4 flex justify-center">
         <div className="flex w-[32rem] items-center justify-start space-x-4 md:w-5/6 lg:w-4/6 ">
@@ -274,7 +294,7 @@ function AddBlog() {
         />
       </div>
     </div>
-  );
+  ) : (<></>));
 }
 
 export default AddBlog;

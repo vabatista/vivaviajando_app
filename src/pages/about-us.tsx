@@ -35,22 +35,6 @@ export default function AboutUs() {
               Viva Viajando
             </div>
             <div className="flex justify-between px-2">
-            <button
-                className="hidden max-h-12 rounded border border-slate-50 px-4 py-2 hover:bg-slate-500/25 md:inline-block"
-                onClick={() => {
-                  navigate('/add-blog');
-                }}
-              >
-                Novo post
-              </button>
-              <button
-                className="px-0 py-0 min-h-10 max-h-12 hover:bg-slate-500/25 md:hidden"
-                onClick={() => {
-                  navigate('/add-blog');
-                }}
-              >
-                <img className="h-10 w-10" src={AddIcon} />
-              </button>
               <div className="flex max-h-12 items-center justify-end px-2 py-2 md:px-20">
                 <ThemeToggle />
               </div>

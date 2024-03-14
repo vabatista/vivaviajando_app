@@ -12,25 +12,46 @@ import '../assets/custom.styles.css';
 import Footer from '../components/footer';
 import logo from '../assets/logo_viva_viajando_transparente.jpeg'
 import React from 'react';
-
 import ReactGA from 'react-ga4';
+import { jwtDecode } from "jwt-decode";
+import GoogleLogin from '../components/google-login';
+
 ReactGA.initialize('G-YYECSC1FEY');
 ReactGA.send({ hitType: "pageview", page: "/Home", title: "Página Inicial" });
+
 
 function HomePage() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<Post[]>([]);
+  const [loggedUser, setLoggedUser] = useState('');
+  const [triedLogin, setTriedLogin] = useState(false);
 
   useEffect(() => {
     axios
       .get(process.env.REACT_APP_API_PATH + '/api/posts')
       .then((response) => {
         setPosts(response.data);
+        console.log('Posts retrieved')
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+
+  useEffect(() => {
+    const gtoken = localStorage.getItem('g-token');
+    setTriedLogin(true);
+    if (gtoken !== null) {
+      const decoded: { email: string } = jwtDecode(gtoken as string);
+      setLoggedUser(decoded.email);
+      
+    }
+  }, []);
+
+  const authUsers = [
+    'vabatista@gmail.com',
+    'gabi.estrella@yahoo.com'
+  ]
 
   return (
     <div className="w-full cursor-default bg-light dark:bg-dark">
@@ -48,25 +69,30 @@ function HomePage() {
               Viva Viajando
             </div>
             <div className="flex justify-between px-2">
-            <button
-                className="hidden max-h-12 rounded border border-slate-50 px-4 py-2 hover:bg-slate-500/25 md:inline-block"
-                onClick={() => {
-                  navigate('/add-blog');
-                }}
-              >
-                Novo post
-              </button>
+            {loggedUser === '' && triedLogin ? (<GoogleLogin setUserFunc={setLoggedUser} />) : authUsers.includes(loggedUser) ? (
+              <>
               <button
-                className="px-0 py-0 min-h-10 max-h-12 hover:bg-slate-500/25 md:hidden"
-                onClick={() => {
-                  navigate('/add-blog');
-                }}
-              >
-                <img className="h-10 w-10" src={AddIcon} />
-              </button>
+                  className="hidden max-h-12 rounded border border-slate-50 px-4 py-2 hover:bg-slate-500/25 md:inline-block"
+                  onClick={() => {
+                    navigate('/add-blog');
+                  }}
+                >
+                  Novo post
+                </button>
+                <button
+                  className="px-0 py-0 min-h-10 max-h-12 hover:bg-slate-500/25 md:hidden"
+                  onClick={() => {
+                    navigate('/add-blog');
+                  }}
+                >
+                  <img className="h-10 w-10" src={AddIcon} />
+                </button>
+                </>
+              ) : <></>}
               <div className="flex max-h-12 items-center justify-end px-2 py-2 md:px-20">
                 <ThemeToggle />
               </div>
+    
             </div>
           </div>
         </div>
