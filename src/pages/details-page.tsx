@@ -9,9 +9,9 @@ import Footer from '../components/footer';
 import ThemeToggle from '../components/theme-toggle-button';
 import mdstyles from '../assets/markdown.styles.module.css'
 
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 ReactGA.initialize('G-YYECSC1FEY');
-ReactGA.pageview(window.location.pathname + window.location.search);
+
 
 export default function DetailsPage() {
   const { state } = useLocation();
@@ -26,9 +26,10 @@ export default function DetailsPage() {
     const getPostById = async () => {
       try {
         await axios.get(process.env.REACT_APP_API_PATH + `/api/posts/${postId}`).then((response) => {
-          console.log(response.data);
           setIsLoading(false);
           setPost(response.data);
+          ReactGA.send({ hitType: "pageview", page: postId, title: response.data.title });
+
         });
       } catch (error) {
         console.log(error);

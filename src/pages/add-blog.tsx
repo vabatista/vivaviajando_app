@@ -11,9 +11,6 @@ import { categories } from '../utils/category-colors';
 import MDEditor from '@uiw/react-md-editor';
 import style from '../assets/markdown.styles.module.css';
 import React from 'react';
-import ReactGA from 'react-ga';
-ReactGA.initialize('G-YYECSC1FEY');
-ReactGA.pageview(window.location.pathname + window.location.search);
 
 type FormData = {
   title: string;

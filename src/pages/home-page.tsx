@@ -13,9 +13,9 @@ import Footer from '../components/footer';
 import logo from '../assets/logo_viva_viajando_transparente.jpeg'
 import React from 'react';
 
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 ReactGA.initialize('G-YYECSC1FEY');
-ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.send({ hitType: "pageview", page: "/Home", title: "Página Inicial" });
 
 function HomePage() {
   const navigate = useNavigate();
