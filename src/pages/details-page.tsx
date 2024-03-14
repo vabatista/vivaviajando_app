@@ -9,7 +9,9 @@ import Footer from '../components/footer';
 import ThemeToggle from '../components/theme-toggle-button';
 import mdstyles from '../assets/markdown.styles.module.css'
 
-
+import ReactGA from 'react-ga';
+ReactGA.initialize('G-YYECSC1FEY');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 export default function DetailsPage() {
   const { state } = useLocation();

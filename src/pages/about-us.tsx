@@ -6,6 +6,9 @@ import AddIcon from '../assets/svg/add-icon-white.svg';
 import logo from '../assets/logo_viva_viajando_transparente.jpeg'
 import React from 'react';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('G-YYECSC1FEY');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 export default function AboutUs() {
   const navigate = useNavigate();

@@ -13,6 +13,10 @@ import Footer from '../components/footer';
 import logo from '../assets/logo_viva_viajando_transparente.jpeg'
 import React from 'react';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('G-YYECSC1FEY');
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 function HomePage() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<Post[]>([]);
