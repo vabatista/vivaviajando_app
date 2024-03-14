@@ -8,9 +8,10 @@ import MDEditor from '@uiw/react-md-editor';
 import Footer from '../components/footer';
 import ThemeToggle from '../components/theme-toggle-button';
 import mdstyles from '../assets/markdown.styles.module.css'
-
+import { DiscussionEmbed } from 'disqus-react';
 import ReactGA from 'react-ga4';
-ReactGA.initialize('G-YYECSC1FEY');
+
+
 
 
 export default function DetailsPage() {
@@ -20,7 +21,7 @@ export default function DetailsPage() {
   const [loading, setIsLoading] = useState(initialVal);
   const { postId } = useParams();
   const navigate = useNavigate();
-
+  ReactGA.initialize('G-YYECSC1FEY');
   ReactGA.send({ hitType: "pageview", page: postId, title: post.title });
 
   useEffect(() => {
@@ -81,6 +82,17 @@ export default function DetailsPage() {
               <MDEditor.Markdown source={post.description} className={mdstyles.reactMarkDown + " bg-light dark:bg-dark"}  />
             </div>
         </div>
+        <DiscussionEmbed
+          shortname='vivaviajando'
+          config={
+              {
+                  url: window.location.href,
+                  identifier: postId,
+                  title: post.title,
+                  language: 'pt_BR' 
+              }
+          }
+      />        
         <Footer/>
 
       </div>
