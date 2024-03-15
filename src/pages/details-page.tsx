@@ -21,7 +21,8 @@ export default function DetailsPage() {
   const [loading, setIsLoading] = useState(initialVal);
   const { postId } = useParams();
   const navigate = useNavigate();
-  ReactGA.initialize('G-YYECSC1FEY');
+  const gaId = process.env.REACT_APP_GA_ID || ''; // Provide a default value if REACT_APP_GA_ID is undefined
+  ReactGA.initialize(gaId);
   ReactGA.send({ hitType: "pageview", page: postId, title: post.title });
 
   useEffect(() => {

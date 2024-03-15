@@ -7,7 +7,9 @@ import logo from '../assets/logo_viva_viajando_transparente.jpeg'
 import React from 'react';
 
 import ReactGA from 'react-ga4';
-ReactGA.initialize('G-YYECSC1FEY');
+
+const gaId = process.env.REACT_APP_GA_ID || ''; // Provide a default value if REACT_APP_GA_ID is undefined
+ReactGA.initialize(gaId);
 ReactGA.send({ hitType: "pageview", page: "/About", title: "Sobre nós" });
 
 export default function AboutUs() {

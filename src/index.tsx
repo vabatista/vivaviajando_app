@@ -9,9 +9,11 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const gaCId = process.env.REACT_APP_GA_CLIENT_ID || ''; // Provide a default value if REACT_APP_GA_ID is undefined
+
 root.render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId="1066132611489-i5epls2u9ipim0fb4b256ngnmc520f2h.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={gaCId}>
       <App />
     </GoogleOAuthProvider>
     <ToastContainer />

@@ -11,6 +11,8 @@ on:
 
 env:
   REACT_APP_API_PATH: ${{secrets.REACT_APP_API_PATH}}
+  REACT_APP_GA_ID: ${{secrets.REACT_APP_GA_ID}} 
+  REACT_APP_GA_CLIENT_ID: ${{secrets.REACT_APP_GA_CLIENT_ID}}
 
 jobs:
   build:

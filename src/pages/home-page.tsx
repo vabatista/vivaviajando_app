@@ -16,7 +16,8 @@ import ReactGA from 'react-ga4';
 import { jwtDecode } from "jwt-decode";
 import GoogleLogin from '../components/google-login';
 
-ReactGA.initialize('G-YYECSC1FEY');
+const gaId = process.env.REACT_APP_GA_ID || ''; // Provide a default value if REACT_APP_GA_ID is undefined
+ReactGA.initialize(gaId);
 ReactGA.send({ hitType: "pageview", page: "/Home", title: "Página Inicial" });
 
 
