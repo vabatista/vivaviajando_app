@@ -85,7 +85,7 @@ export default function DetailsPage() {
             </div>
         </div>
         <DiscussionEmbed
-          shortname='vivaviajando'
+          shortname={process.env.REACT_APP_DISQUS_APP_ID || ''}
           config={
               {
                   url: window.location.href,
