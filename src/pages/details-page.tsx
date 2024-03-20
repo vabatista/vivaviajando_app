@@ -23,7 +23,7 @@ export default function DetailsPage() {
   const navigate = useNavigate();
   const gaId = process.env.REACT_APP_GA_ID || ''; // Provide a default value if REACT_APP_GA_ID is undefined
   ReactGA.initialize(gaId);
-  ReactGA.send({ hitType: "pageview", page: postId, title: post.title });
+  
 
   useEffect(() => {
     const getPostById = async () => {
@@ -50,7 +50,8 @@ export default function DetailsPage() {
     }
   }, [])
 
-  if (!loading)
+  if (!loading) {
+    ReactGA.send({ hitType: "pageview", page: postId, title: post.title });
     return (
       <div className="min-h-screen bg-light dark:bg-dark">
         <div className="relative flex flex-col">
@@ -98,5 +99,6 @@ export default function DetailsPage() {
 
       </div>
     );
+  }
   else return <h1>Loading...</h1>;
 }
