@@ -25,6 +25,8 @@ REACT_APP_GA_ID="G-XXXXXXX"
 REACT_APP_GA_CLIENT_ID="YOURID.apps.googleusercontent.com"
 REACT_APP_DISQUS_APP_ID="YOURID"
 ```
+PS: insert the secrets in github actions for devops.
+
 I used free tier of Disqus and Google Analytics. You can create an account and get these variables for free.
 
 3. run:

@@ -10,7 +10,7 @@ import ThemeToggle from '../components/theme-toggle-button';
 import mdstyles from '../assets/markdown.styles.module.css'
 import { DiscussionEmbed } from 'disqus-react';
 import ReactGA from 'react-ga4';
-
+import DocumentMeta from 'react-document-meta';
 
 
 
@@ -24,7 +24,25 @@ export default function DetailsPage() {
   const gaId = process.env.REACT_APP_GA_ID || ''; // Provide a default value if REACT_APP_GA_ID is undefined
   ReactGA.initialize(gaId);
   
+  function getFirstParagraph(text: string) {
+    // Split the text into an array of paragraphs
+    const paragraphs = text.split('\n\n'); // Assuming paragraphs are separated by double line breaks
 
+    // Return the first paragraph
+    if(paragraphs.length > 0) {
+        return paragraphs[0];
+    } else {
+        return "";
+    }
+  }
+
+  const meta = {
+    title: post.title,
+    description: 'Blog Viva Viajando ' + getFirstParagraph(post.description),
+    canonical: window.location.href,
+  };
+
+  
   useEffect(() => {
     const getPostById = async () => {
       try {
@@ -53,7 +71,9 @@ export default function DetailsPage() {
   if (!loading) {
     ReactGA.send({ hitType: "pageview", page: postId, title: post.title });
     return (
+      
       <div className="min-h-screen bg-light dark:bg-dark">
+        <DocumentMeta {...meta}></DocumentMeta>
         <div className="relative flex flex-col">
           <img src={post.imageLink} alt={post.title} className="h-80 w-full object-cover md:h-96" />
           <div className="absolute left-0 top-0 h-full w-full bg-slate-950/60"></div>

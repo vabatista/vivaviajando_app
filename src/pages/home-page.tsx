@@ -15,6 +15,7 @@ import React from 'react';
 import ReactGA from 'react-ga4';
 import { jwtDecode } from "jwt-decode";
 import GoogleLogin from '../components/google-login';
+import DocumentMeta from 'react-document-meta';
 
 const gaId = process.env.REACT_APP_GA_ID || ''; // Provide a default value if REACT_APP_GA_ID is undefined
 ReactGA.initialize(gaId);
@@ -26,6 +27,13 @@ function HomePage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loggedUser, setLoggedUser] = useState('');
   const [triedLogin, setTriedLogin] = useState(false);
+
+
+  const meta = {
+    title: 'Blog Viva Viajando',
+    description: 'Blog Viva Viajando. Nesse blog você vai encontrar textos sobre nossas viagens, dicas de como organizar a sua e muito mais.',
+    canonical: window.location.href,
+  };
 
   useEffect(() => {
     axios
@@ -56,6 +64,7 @@ function HomePage() {
 
   return (
     <div className="w-full cursor-default bg-light dark:bg-dark">
+      <DocumentMeta {...meta}></DocumentMeta>
       <div
         style={{ backgroundImage: `url(${bg})` }}
         className="relative -mt-2 h-[100px] bg-cover bg-fixed bg-center"
