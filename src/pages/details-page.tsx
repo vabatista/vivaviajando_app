@@ -35,13 +35,6 @@ export default function DetailsPage() {
         return "";
     }
   }
-
-  const meta = {
-    title: post.title,
-    description: 'Blog Viva Viajando ' + getFirstParagraph(post.description),
-    canonical: window.location.href,
-  };
-
   
   useEffect(() => {
     const getPostById = async () => {
@@ -69,6 +62,11 @@ export default function DetailsPage() {
   }, [])
 
   if (!loading) {
+    const meta = {
+      title: post.title,
+      description: 'Blog Viva Viajando ' + getFirstParagraph(post.description),
+      canonical: window.location.href,
+    };    
     ReactGA.send({ hitType: "pageview", page: postId, title: post.title });
     return (
       
