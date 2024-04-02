@@ -48,7 +48,7 @@ export default function AboutUs() {
         <br/>
         <br/>
         <h1 className="text-xl sm:pb-0 pb-4 font-semibold dark:text-dark-primary">Sobre nós</h1>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap dark:text-dark-primary">
           Não somos uma empresa. É importante começar por aí. Não temos a intenção de fazer dinheiro com esse blogue, mas apenas passar o tempo e relembrar um pouco das nossas viagens.
           <br/><br/>
           Somos um casal, Vitor e Gabriela. Vitor é nascido mineiro, habitante do Rio de Janeiro e com Greencard baiano, por ser casado com uma baiana residente no Rio de Janeiro. Esse blogue é desenvolvido e mantido por nós, portanto, não espere algo profissional. Por outro lado, aqui não fazemos recomendações ou damos dicas com conflito de interesses, já que não temos qualquer tipo de patrocínio nas nossas viagens. 
