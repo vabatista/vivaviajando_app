@@ -1,19 +1,13 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - vivaviajando-frontend
+name: Build and Test Node.js App
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-
-env:
-  REACT_APP_API_PATH: ${{secrets.REACT_APP_API_PATH}}
-  REACT_APP_GA_ID: ${{secrets.REACT_APP_GA_ID}} 
-  REACT_APP_GA_CLIENT_ID: ${{secrets.REACT_APP_GA_CLIENT_ID}}
-  REACT_APP_DISQUS_APP_ID: ${{secrets.REACT_APP_DISQUS_APP_ID}}
+  pull_request:
 
 jobs:
   build:
@@ -27,51 +21,8 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          CI=false && npm run build --if-present
+      - name: Install dependencies
+        run: npm install
 
-      #- name: Zip artifact for deployment
-      #  run: zip release.zip ./* -r
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
-        with:
-          name: node-app
-          path: build/ #release.zip
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: node-app
-
-       #- name: Unzip artifact for deployment
-       # run: unzip release.zip
-      
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2DD0381579194081BF0746B2CAD4ED4F }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FA279FF5600544C9A788B508E9878AF6 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5B9E79C99C3C40B591914B61513C8D60 }}
-          auth-type: 'IDENTITY'
-          enable-AzPSSession: true
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'vivaviajando-frontend'
-          slot-name: 'Production'
-          package: .
-          
+      - name: Run tests
+        run: npm test
