@@ -10,7 +10,7 @@ import ThemeToggle from '../components/theme-toggle-button';
 import AddIcon from '../assets/svg/add-icon-white.svg';
 import '../assets/custom.styles.css';
 import Footer from '../components/footer';
-import logo from '../assets/logo_viva_viajando_transparente.jpeg'
+import logo from '../assets/logo_viva_viajando_transparente.png'
 import React from 'react';
 import ReactGA from 'react-ga4';
 import { jwtDecode } from "jwt-decode";
@@ -41,6 +41,7 @@ function HomePage() {
       .then((response) => {
         setPosts(response.data);
         console.log('Posts retrieved')
+        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
