@@ -77,7 +77,7 @@ export default function DetailsPage() {
           <div className="absolute left-0 top-0 h-full w-full bg-slate-950/60"></div>
           <div>
             <div className="absolute top-12 w-full cursor-pointer justify-start px-2 text-lg text-slate-50 md:top-20 md:px-8 md:text-xl lg:px-12 lg:text-2xl">
-              <img src={navigateBackWhiteIcon} className="h-5 w-10" onClick={() => navigate(-1)} />
+              <img src={navigateBackWhiteIcon} className="h-5 w-10" onClick={() => navigate('/')} />
             </div>
           </div>
 
@@ -97,11 +97,19 @@ export default function DetailsPage() {
             </p>
           </div>
         </div>
-        <div className="items-center gap-y-4 px-4 py-10" >
-            <div id="textcontainer" className="wmde-markdown-var">
-              <MDEditor.Markdown source={post.description} className={mdstyles.reactMarkDown + " bg-light dark:bg-dark"}  />
-            </div>
-        </div>
+        <div
+          id="textcontainer"
+          className={`wmde-markdown-var items-center gap-y-4 px-4 py-10 ${
+            localStorage.getItem('theme') === 'dark' ? 'bg-dark text-white' : 'bg-light text-black'
+          }`}
+        >
+          <MDEditor.Markdown
+            source={post.description}
+            className={`${mdstyles.reactMarkDown} ${
+              localStorage.getItem('theme') === 'dark' ? 'bg-dark text-white' : 'bg-light text-black'
+            }`}
+          />
+        </div>        
         <DiscussionEmbed
           shortname={process.env.REACT_APP_DISQUS_APP_ID || ''}
           config={
