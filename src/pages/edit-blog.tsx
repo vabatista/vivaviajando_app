@@ -238,6 +238,7 @@ function EditBlog() {
           <div className="w-fit cursor-pointer">
             <img
               src={isDarkMode ? navigateBackWhiteIcon : navigateBackBlackIcon}
+              alt="Voltar"
               onClick={() => navigate(-1)}
               className="h-5 w-10"
             />

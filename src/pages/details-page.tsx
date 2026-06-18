@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import MDEditor from '@uiw/react-md-editor';
 import Footer from '../components/footer';
-import ThemeToggle from '../components/theme-toggle-button';
 import mdstyles from '../assets/markdown.styles.module.css'
 import { DiscussionEmbed } from 'disqus-react';
 import ReactGA from 'react-ga4';
@@ -53,7 +52,7 @@ export default function DetailsPage() {
     if (post === undefined) {
       getPostById();
     }
-  }, [post]);
+  }, [post, postId]);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme') ?? 'light';
@@ -79,7 +78,7 @@ export default function DetailsPage() {
           <div className="absolute left-0 top-0 h-full w-full bg-slate-950/60"></div>
           <div>
             <div className="absolute top-12 left-2 cursor-pointer text-lg text-slate-50 md:top-20 md:left-8 lg:left-12">
-              <img src={navigateBackWhiteIcon} className="h-5 w-10" onClick={() => navigate('/')} />
+              <img src={navigateBackWhiteIcon} alt="Voltar" className="h-5 w-10" onClick={() => navigate('/')} />
             </div>
             <div className="absolute top-12 right-4 z-10 md:top-20 md:right-8 lg:right-12">
               <div className="flex items-center space-x-1 bg-slate-950/60 rounded-full p-1 border border-slate-600/35">

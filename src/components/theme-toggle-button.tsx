@@ -39,7 +39,7 @@ function ThemeToggle() {
               : 'translate-x-0 bg-light-theme-foreground'
           } h-6 w-6 rounded-full bg-black px-1 py-1 duration-300`}
         >
-          <img src={`${isDarkTheme ? Moon : Sun}`} />
+          <img src={`${isDarkTheme ? Moon : Sun}`} alt="Theme Icon" />
         </div>
       </button>
     </div>

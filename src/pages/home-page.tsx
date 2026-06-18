@@ -75,7 +75,7 @@ function HomePage() {
         <div className="absolute inset-0 flex flex-col px-4 py-8 text-slate-50 md:px-16">
           <div className="flex w-full justify-between">
             <div>
-              <img src={logo} style={{height: 85}} />
+               <img src={logo} alt="Logo" style={{height: 85}} />
             </div>  
             <div className="hidden flex max-h-20 px-4 items-left justify-between text-2xl font-semibold md:inline-block">
               Viva Viajando
@@ -97,7 +97,7 @@ function HomePage() {
                     navigate('/add-blog');
                   }}
                 >
-                  <img className="h-10 w-10" src={AddIcon} />
+                   <img className="h-10 w-10" src={AddIcon} alt="Novo Post" />
                 </button>
                 </>
               ) : <></>}

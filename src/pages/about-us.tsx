@@ -2,7 +2,6 @@ import { useNavigate  } from 'react-router-dom';
 import navigateBackWhiteIcon from '../assets/svg/navigate-back-white.svg';
 import bg from '../assets/wanderlustbg.webp';
 import ThemeToggle from '../components/theme-toggle-button';
-import AddIcon from '../assets/svg/add-icon-white.svg';
 import logo from '../assets/logo_viva_viajando_transparente.jpeg'
 import React from 'react';
 
@@ -39,7 +38,7 @@ export default function AboutUs() {
           </div>                              
 
             <div>
-              <img src={logo} style={{height: 85}} />
+              <img src={logo} alt="Logo Viva Viajando" style={{height: 85}} />
             </div>  
             <div className="hidden flex max-h-20 px-4 items-left justify-between text-2xl font-semibold md:inline-block">
               Viva Viajando
