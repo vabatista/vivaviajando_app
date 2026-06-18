@@ -25,12 +25,17 @@ type FormData = {
   authorName: string;
   imageLink: string;
   categories: string[];
-  description: string;
+  description: {
+    'pt-br': string;
+    'en': string;
+  };
   isFeaturedPost: boolean;
 };
 function AddBlog() {
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [loggedUser, setLoggedUser] = useState('');
+  const [activeTab, setActiveTab] = useState<'pt-br' | 'en'>('pt-br');
+  const [isTranslating, setIsTranslating] = useState(false);
 
   useEffect(() => {
     const gtoken = localStorage.getItem('g-token');
@@ -53,9 +58,42 @@ function AddBlog() {
     authorName: '',
     imageLink: '',
     categories: [],
-    description: '',
+    description: {
+      'pt-br': '',
+      'en': '',
+    },
     isFeaturedPost: false,
   });
+
+  const handleTranslateContent = async () => {
+    const textToTranslate = formData.description['pt-br'];
+    if (!textToTranslate) {
+      toast.error('Digite o conteúdo em português primeiro.');
+      return;
+    }
+    
+    setIsTranslating(true);
+    try {
+      const response = await axios.post(
+        (process.env.REACT_APP_API_PATH || '') + '/api/posts/translate',
+        { text: textToTranslate }
+      );
+      if (response.data && response.data.translation) {
+        setFormData({
+          ...formData,
+          description: {
+            ...formData.description,
+            'en': response.data.translation
+          }
+        });
+        toast.success('Tradução gerada com sucesso!');
+      }
+    } catch (err: any) {
+      toast.error('Erro na tradução: ' + err.message);
+    } finally {
+      setIsTranslating(false);
+    }
+  };
 
   //checks the length of the categories array and if the category is already selected
   const isValidCategory = (category: string): boolean => {
@@ -68,8 +106,14 @@ function AddBlog() {
   };
 
   const handleEditorChange = (value: any) => {
-    setFormData({ ...formData, description: value });
-  }
+    setFormData({
+      ...formData,
+      description: {
+        ...formData.description,
+        [activeTab]: value || '',
+      }
+    });
+  };
 
   const handleCategoryClick = (category: string) => {
     if (isValidCategory(category)) return;
@@ -103,7 +147,7 @@ function AddBlog() {
       !formData.title ||
       !formData.authorName ||
       !formData.imageLink ||
-      !formData.description ||
+      !formData.description['pt-br'] ||
       formData.categories.length === 0
     ) {
       toast.error('All fields must be filled out.');
@@ -198,21 +242,41 @@ function AddBlog() {
           </div>
 
           <div className="mb-1">
-            <div className="px-2 py-1 font-medium text-light-secondary dark:text-dark-secondary">
-              Conteúdo <Asterisk />
+            <div className="flex justify-between items-center px-2 py-1">
+              <div className="font-medium text-light-secondary dark:text-dark-secondary">
+                Conteúdo ({activeTab === 'pt-br' ? 'Português' : 'Inglês'}) <Asterisk />
+              </div>
+              <div className="flex items-center space-x-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('pt-br')}
+                  className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${activeTab === 'pt-br' ? 'bg-light-primary text-light dark:bg-dark-primary dark:text-dark-card' : 'bg-slate-200 dark:bg-dark-card text-light-secondary dark:text-dark-secondary'}`}
+                >
+                  Português
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('en')}
+                  className={`px-3 py-1 rounded text-xs font-semibold transition-colors ${activeTab === 'en' ? 'bg-light-primary text-light dark:bg-dark-primary dark:text-dark-card' : 'bg-slate-200 dark:bg-dark-card text-light-secondary dark:text-dark-secondary'}`}
+                >
+                  Inglês
+                </button>
+                {activeTab === 'en' && (
+                  <button
+                    type="button"
+                    onClick={handleTranslateContent}
+                    disabled={isTranslating}
+                    className="px-3 py-1 rounded text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700 disabled:bg-emerald-850 transition-colors"
+                  >
+                    {isTranslating ? 'Traduzindo...' : 'Gerar versão em inglês'}
+                  </button>
+                )}
+              </div>
             </div>
             <MDEditor height={500} 
-              value={formData.description} 
+              value={formData.description[activeTab]} 
               onChange={(value) => handleEditorChange(value || '')} 
               className={style.reactMarkDown} />
-            {/* <textarea
-              name="description"
-              placeholder="Start writing here&hellip;"
-              rows={5}
-              className="w-full rounded-lg bg-slate-200 p-3 placeholder:text-sm placeholder:text-light-tertiary dark:bg-dark-card dark:text-slate-50 dark:placeholder:text-dark-tertiary"
-              value={formData.description}
-              onChange={handleInputChange}
-            /> */}
           </div>
 
           <div className="mb-2">

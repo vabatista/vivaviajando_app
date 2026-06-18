@@ -12,10 +12,13 @@ export default function FeaturedPostCard({
 }: { post: Post } & TestProps) {
   const navigate = useNavigate();
   const slug = createSlug(post.title);
+  const lang = localStorage.getItem('lang') || 'pt-br';
+  const descriptionText = typeof post.description === 'object' ? (post.description[lang] || post.description['pt-br'] || '') : (post.description || '');
+
   return (
     <div
       className="flex flex-col sm:flex-row h-auto sm:h-48 cursor-pointer gap-2 rounded-lg bg-light dark:bg-dark-card"
-      onClick={() => navigate(`/details-page/${slug}/${post._id}`, { state: { post } })}
+      onClick={() => navigate(`/details-page/${slug}/${lang}/${post._id}`, { state: { post } })}
       data-testid={testId}
     >
       <div className="w-full sm:w-1/3">
@@ -36,7 +39,7 @@ export default function FeaturedPostCard({
         </div>
         <div className="line-clamp-2 sm:line-clamp-3">
           <p className="overflow-ellipsis text-light-description dark:text-dark-description">
-            {post.description}
+            {descriptionText}
           </p>
         </div>
         <div className="flex flex-1 items-end text-xs text-light-info dark:text-dark-info">

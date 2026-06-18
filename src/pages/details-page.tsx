@@ -19,12 +19,14 @@ export default function DetailsPage() {
   const [post, setPost] = useState(state?.post);
   const initialVal = post === undefined;
   const [loading, setIsLoading] = useState(initialVal);
-  const { postId } = useParams();
+  const { postId, title: routeTitle, lang } = useParams();
+  const currentLang = lang || 'pt-br';
   const navigate = useNavigate();
   const gaId = process.env.REACT_APP_GA_ID || ''; // Provide a default value if REACT_APP_GA_ID is undefined
   ReactGA.initialize(gaId);
   
-  function getFirstParagraph(text: string) {
+  function getFirstParagraph(desc: any) {
+    const text = typeof desc === 'object' ? (desc[currentLang] || desc['pt-br'] || '') : (desc || '');
     // Split the text into an array of paragraphs
     const paragraphs = text.split('\n\n'); // Assuming paragraphs are separated by double line breaks
 
@@ -76,8 +78,32 @@ export default function DetailsPage() {
           <img src={post.imageLink} alt={post.title} className="h-80 w-full object-cover md:h-96" />
           <div className="absolute left-0 top-0 h-full w-full bg-slate-950/60"></div>
           <div>
-            <div className="absolute top-12 w-full cursor-pointer justify-start px-2 text-lg text-slate-50 md:top-20 md:px-8 md:text-xl lg:px-12 lg:text-2xl">
+            <div className="absolute top-12 left-2 cursor-pointer text-lg text-slate-50 md:top-20 md:left-8 lg:left-12">
               <img src={navigateBackWhiteIcon} className="h-5 w-10" onClick={() => navigate('/')} />
+            </div>
+            <div className="absolute top-12 right-4 z-10 md:top-20 md:right-8 lg:right-12">
+              <div className="flex items-center space-x-1 bg-slate-950/60 rounded-full p-1 border border-slate-600/35">
+                <button
+                  onClick={() => {
+                    localStorage.setItem('lang', 'pt-br');
+                    navigate(`/details-page/${routeTitle}/pt-br/${postId}`, { state: { post } });
+                  }}
+                  className={`p-1 rounded-full hover:scale-110 transition-transform ${currentLang === 'pt-br' ? 'bg-slate-700 ring-2 ring-blue-500' : 'opacity-60 hover:opacity-100'}`}
+                  title="Português"
+                >
+                  <img src="https://flagcdn.com/w40/br.png" className="h-4 w-6 object-cover rounded-sm" alt="BR" />
+                </button>
+                <button
+                  onClick={() => {
+                    localStorage.setItem('lang', 'en');
+                    navigate(`/details-page/${routeTitle}/en/${postId}`, { state: { post } });
+                  }}
+                  className={`p-1 rounded-full hover:scale-110 transition-transform ${currentLang === 'en' ? 'bg-slate-700 ring-2 ring-blue-500' : 'opacity-60 hover:opacity-100'}`}
+                  title="English"
+                >
+                  <img src="https://flagcdn.com/w40/gb.png" className="h-4 w-6 object-cover rounded-sm" alt="EN" />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -104,7 +130,7 @@ export default function DetailsPage() {
           }`}
         >
           <MDEditor.Markdown
-            source={post.description}
+            source={typeof post.description === 'object' ? (post.description[currentLang] || post.description['pt-br'] || '') : (post.description || '')}
             className={`${mdstyles.reactMarkDown} ${
               localStorage.getItem('theme') === 'dark' ? 'bg-dark text-white' : 'bg-light text-black'
             }`}

@@ -15,6 +15,14 @@ ReactGA.send({ hitType: "pageview", page: "/About", title: "Sobre nós" });
 export default function AboutUs() {
   const navigate = useNavigate();
 
+  const handleBackClick = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
 
     <div className="w-full cursor-default bg-light dark:bg-dark">
@@ -27,7 +35,7 @@ export default function AboutUs() {
         <div className="absolute inset-0 flex flex-col px-4 py-8 text-slate-50 md:px-16">
           <div className="flex w-full justify-between">
           <div className="absolute inset-4 px-0 py-10">
-            <img src={navigateBackWhiteIcon} className="h-5 w-10" onClick={() => navigate(-1)} />
+            <img src={navigateBackWhiteIcon} alt="Voltar" className="h-5 w-10 cursor-pointer" onClick={handleBackClick} />
           </div>                              
 
             <div>

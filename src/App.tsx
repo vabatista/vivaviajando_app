@@ -17,6 +17,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="add-blog" element={<AddBlog />} />
           <Route path="details-page/:title/:postId" element={<DetailsPage />} />
+          <Route path="details-page/:title/:lang/:postId" element={<DetailsPage />} />
           <Route path="edit-page/:postId" element={<EditBlog />} />
           <Route path="about-us" element={<AboutUs />} />
         </Route>

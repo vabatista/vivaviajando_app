@@ -26,6 +26,7 @@ function HomePage() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loggedUser, setLoggedUser] = useState('');
+  const [lang, setLang] = useState(localStorage.getItem('lang') || 'pt-br');
   const [triedLogin, setTriedLogin] = useState(false);
 
 
@@ -100,8 +101,32 @@ function HomePage() {
                 </button>
                 </>
               ) : <></>}
-              <div className="flex max-h-12 items-center justify-end px-2 py-2 md:px-20">
+              <div className="flex max-h-12 items-center justify-end px-2 py-2 md:px-10 space-x-3">
                 <ThemeToggle />
+                <div className="flex items-center space-x-1 ml-2 bg-slate-800/40 rounded-full p-1 border border-slate-600/35">
+                  <button
+                    onClick={() => {
+                      localStorage.setItem('lang', 'pt-br');
+                      setLang('pt-br');
+                      window.dispatchEvent(new Event('storage'));
+                    }}
+                    className={`p-1 rounded-full hover:scale-110 transition-transform ${lang === 'pt-br' ? 'bg-slate-700 ring-2 ring-blue-500' : 'opacity-60 hover:opacity-100'}`}
+                    title="Português"
+                  >
+                    <img src="https://flagcdn.com/w40/br.png" className="h-4 w-6 object-cover rounded-sm" alt="BR" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      localStorage.setItem('lang', 'en');
+                      setLang('en');
+                      window.dispatchEvent(new Event('storage'));
+                    }}
+                    className={`p-1 rounded-full hover:scale-110 transition-transform ${lang === 'en' ? 'bg-slate-700 ring-2 ring-blue-500' : 'opacity-60 hover:opacity-100'}`}
+                    title="English"
+                  >
+                    <img src="https://flagcdn.com/w40/gb.png" className="h-4 w-6 object-cover rounded-sm" alt="EN" />
+                  </button>
+                </div>
               </div>
     
             </div>

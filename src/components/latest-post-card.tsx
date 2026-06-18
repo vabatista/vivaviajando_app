@@ -13,10 +13,12 @@ export default function LatestPostCard({
 }: { post: Post } & TestProps) {
   const navigate = useNavigate();
   const slug = createSlug(post.title);
+  const lang = localStorage.getItem('lang') || 'pt-br';
+
   return (
     <div
       className="cursor-pointer rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-none dark:bg-dark-card"
-      onClick={() => navigate(`/details-page/${slug}/${post._id}`, { state: { post } })}
+      onClick={() => navigate(`/details-page/${slug}/${lang}/${post._id}`, { state: { post } })}
       data-testid={testId}
     >
       <div className="flex">
